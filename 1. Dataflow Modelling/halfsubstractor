@@ -1,0 +1,67 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000011f909a96c0 .scope module, "halfsubstractor_tb" "halfsubstractor_tb" 2 1;
+ .timescale 0 0;
+v0000011f90865d40_0 .var "a", 0 0;
+v0000011f90865de0_0 .var "b", 0 0;
+v0000011f90865e80_0 .net "borr", 0 0, L_0000011f909abcb0;  1 drivers
+v0000011f90865f20_0 .net "diff", 0 0, L_0000011f90865fc0;  1 drivers
+S_0000011f909a9850 .scope module, "uut" "halfsubstractor" 2 6, 3 1 0, S_0000011f909a96c0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "diff";
+    .port_info 3 /OUTPUT 1 "borr";
+L_0000011f90865fc0 .functor XOR 1, v0000011f90865d40_0, v0000011f90865de0_0, C4<0>, C4<0>;
+L_0000011f90833420 .functor NOT 1, v0000011f90865d40_0, C4<0>, C4<0>, C4<0>;
+L_0000011f909abcb0 .functor AND 1, L_0000011f90833420, v0000011f90865de0_0, C4<1>, C4<1>;
+v0000011f909a8390_0 .net *"_ivl_2", 0 0, L_0000011f90833420;  1 drivers
+v0000011f90833380_0 .net "a", 0 0, v0000011f90865d40_0;  1 drivers
+v0000011f90865b60_0 .net "b", 0 0, v0000011f90865de0_0;  1 drivers
+v0000011f90865c00_0 .net "borr", 0 0, L_0000011f909abcb0;  alias, 1 drivers
+v0000011f90865ca0_0 .net "diff", 0 0, L_0000011f90865fc0;  alias, 1 drivers
+    .scope S_0000011f909a96c0;
+T_0 ;
+    %vpi_call 2 10 "$monitor", "a=%0b,b=%0b,diff=%0b,borr=%0b", v0000011f90865d40_0, v0000011f90865de0_0, v0000011f90865f20_0, v0000011f90865e80_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000011f90865d40_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000011f90865de0_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000011f90865d40_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000011f90865de0_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000011f90865d40_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000011f90865de0_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000011f90865d40_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000011f90865de0_0, 0, 1;
+    %delay 35, 0;
+    %vpi_call 2 19 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0000011f909a96c0;
+T_1 ;
+    %vpi_call 2 25 "$dumpfile", "halfsubstractor.vcd" {0 0 0};
+    %vpi_call 2 26 "$dumpvars" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "halfsubstractor_tb.v";
+    "halfsubstractor.v";
