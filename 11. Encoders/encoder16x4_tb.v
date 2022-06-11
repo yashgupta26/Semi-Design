@@ -2,11 +2,11 @@ module tb;
   
   reg [15:0] in;
   wire [3:0] out;
-  
-  encoder16x4 dut (in,out);
+  wire eo;
+  encoder16x4 dut (in,out,eo);
   
   initial begin
-    $monitor("in = %b;out=%b",in,out);
+    $monitor("in = %b;out=%b,eo=%b",in,out,eo);
     in=16'b0000_0000_0000_0001; #5
     in=16'b0000_0000_0000_0010; #5
     in=16'b0000_0000_0000_0100; #5
@@ -23,6 +23,7 @@ module tb;
     in=16'b0010_0000_0000_0000; #5
     in=16'b0100_0000_0000_0000; #5
     in=16'b1000_0000_0000_0000; #5
+    in=16'b0000_0000_0000_0000; #5
     $finish;
   end
   
